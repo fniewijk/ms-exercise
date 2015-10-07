@@ -1,0 +1,11 @@
+<div class="product-list ">
+  <h2>Product List</h2>
+    <sort-dropdown type="property" order="order"></sort-dropdown>
+    <ul>
+      <li class="col-12" ng-repeat="item in data | orderBy:property: (order == 'high')">
+          <div class="col-4 info">{{item.name}}</div>
+          <div class="col-4 info">{{item.price}}</div>
+          <div class="col-4 promotion">{{item.promotion}}</div>
+      </li>
+    </ul>
+</div>
