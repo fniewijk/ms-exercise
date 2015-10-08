@@ -1,5 +1,37 @@
 ProductLoader = require './ProductLoader.coffee'
 
 describe 'ProductLoader', ->
-  it 'should test something', ->
-    expect(1).to.equal(1)
+
+  $httpBackend = productLoader = null
+  mockData = { "data" : [
+    {
+      "name": "Pure Linen Easy to Iron Broderie Bodice Shift Dress",
+      "price": 25
+    },
+    {
+      "name": "Faux Snakeskin & Fire Print Maxi Dress",
+      "price": 34,
+      "promotion": "holiday promo"
+    },
+    {
+      "name": "Mesh Lace Tunic Shift Dress",
+      "price": 34
+    }
+  ]}
+
+  beforeEach ->
+    angular.mock.module('app')
+
+    inject (_$httpBackend_, _productLoader_) ->
+      $httpBackend = _$httpBackend_
+      productLoader = _productLoader_
+
+  it 'fetching data through get returns the same amount of data as that which is loaded', ->
+
+    $httpBackend.when('GET', 'data/data.json').respond(mockData)
+
+    returnObject = productLoader.get()
+
+    $httpBackend.flush()
+
+    expect(returnObject.$$state.value.data.data.length).to.equal mockData.data.length

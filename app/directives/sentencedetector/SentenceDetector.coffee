@@ -1,7 +1,7 @@
 template = require './SentenceDetector.html'
 require './SentenceDetector.less'
 
-module.exports = (sentenceSplitter)->
+module.exports = (sentenceSplitter) ->
 
   return {
     replace: true

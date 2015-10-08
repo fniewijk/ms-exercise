@@ -1,9 +1,10 @@
 template = require './SortDropdown.html'
 require './SortDropdown.less'
-$ = require 'jquery'
 
 module.exports = ->
-
+  #TODO: build dropdown from data
+  types = ["name", "price", "promotion"]
+  orders = ["low", "high"]
   return {
     replace: true
     restrict: 'AE'
@@ -14,10 +15,10 @@ module.exports = ->
     link: (scope, element) ->
 
       # default settings if not set
-      if not scope.type
-        scope.type = "name"
-      if not scope.order
-        scope.order = "low"
+      if scope.type not in types
+        scope.type = types[0]
+      if scope.order not in orders
+        scope.order = orders[0]
 
       scope.$watch('selected', (inputString) ->
         if inputString

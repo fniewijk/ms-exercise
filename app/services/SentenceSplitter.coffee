@@ -1,7 +1,10 @@
 module.exports = ->
 
   analyze: (sentenceString) ->
-    regex = /[A-Z]{1}(.|\n)+?(\.|(\!\?)|(\?\!)|\?|\!)(\s|\n|$){1}/gm
-    sentenceString.match(regex)
+    if sentenceString
+      regex = /[A-Z]{1}(.|\n)+?(\.|(\!\?)|(\?\!)|\?|\!)(\s|\n|$){1}/gm
+      result = String(sentenceString).match(regex)
+      return result if result and result.length > 0
+    return []
 
 module.exports.$inject = []
