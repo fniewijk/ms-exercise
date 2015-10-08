@@ -34,7 +34,7 @@ describe 'ProductList', ->
 
 
   beforeEach ->
-    angular.mock.module('App')
+    angular.mock.module('app')
 
     inject (_$rootScope_, _$compile_) ->
       $rootScope = _$rootScope_.$new()

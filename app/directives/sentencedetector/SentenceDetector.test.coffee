@@ -10,22 +10,16 @@ describe 'SentenceDetector', ->
     analyze : (inputString) ->
       return ["I am not surprised.", "I am very surprised!", "Am I surprised?", "I am surprised, are you?", "I’m not surprised; that’s pretty cool though.", "On a scale of 1 – 10, how surprised are you?", "You don’t look surprised.", "Are you kidding me?!", "Of course I’m surprised, who wouldn’t be!?", "It’s amazing!"]
   }
-  mockServiceEmpty = {
-    analyze : (inputString) ->
-      return []
-  }
 
-
-  createDirective = (template) ->
-    $rootScope.inputString = defaultData
+  createDirective = (data, template) ->
+    $rootScope.inputString = data
     elem = $compile(template or defaultTemplate)($rootScope)
     $rootScope.$digest()
 
     elem
 
-
   beforeEach ->
-    angular.mock.module('App')
+    angular.mock.module('app')
 
     inject (_$rootScope_, _$compile_, _sentenceSplitter_) ->
       $rootScope = _$rootScope_.$new()
@@ -33,23 +27,23 @@ describe 'SentenceDetector', ->
       $sentenceSplitter = mockService
 
   it 'the directive should render three elements', ->
-    $element = createDirective()
+    $element = createDirective("")
 
     element = $element[0]
 
     expect(element.tagName).to.equal 'DIV'
     expect($element.children()).to.have.length 3
 
-  # it 'should produce an empty list if no data provided', ->
-  #   $element = createDirective().children()[2]
+  it 'should produce an empty list if no data provided', ->
+    $element = createDirective("").children()[2]
 
-  #   element = $element
+    element = $element
 
-  #   expect(element.tagName).to.equal 'UL'
-  #   expect(angular.element($element).children()).to.have.length 0
+    expect(element.tagName).to.equal 'UL'
+    expect(angular.element($element).children()).to.have.length 0
 
   it 'should produce list items from the data', ->
-    $element = angular.element(createDirective().children()[2])
+    $element = angular.element(createDirective(defaultData).children()[2])
 
     expect($element.children()).to.have.length 10
 

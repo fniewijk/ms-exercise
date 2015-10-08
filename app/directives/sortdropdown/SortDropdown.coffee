@@ -13,7 +13,7 @@ module.exports = ->
     template: template
     link: (scope, element) ->
 
-      # a bit messy. I guess I would make it configurable or use the data attribute fields to
+      # default settings if not set
       if not scope.type
         scope.type = "name"
       if not scope.order
@@ -21,6 +21,7 @@ module.exports = ->
 
       scope.$watch('selected', (inputString) ->
         if inputString
+          # Alternatively I could've used data properties.
           split = inputString.split('-')
           scope.type = split[0]
           scope.order = split[1]

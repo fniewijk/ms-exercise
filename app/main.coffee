@@ -2,7 +2,7 @@ $ = require 'jquery'
 angular = require 'angular'
 require './main.less'
 
-mod = angular.module('App', [])
+mod = angular.module('app', [])
   .controller('AppController', require './controllers/AppController.coffee')
 
   .factory('sentenceSplitter', require './services/SentenceSplitter.coffee')
