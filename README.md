@@ -9,3 +9,7 @@ then
 also
 
 npm run test
+
+and for a coverage report in app/coverage/
+
+npm run test-coverage

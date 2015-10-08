@@ -8,9 +8,11 @@ module.exports = (sentenceSplitter)->
     restrict: 'AE'
     template: template
     link: (scope, element) ->
-      scope.inputString = ""
+      if not scope.inputString
+        scope.inputString = ""
       scope.sentences = []
 
+      scope.sentences = sentenceSplitter.analyze(scope.inputString)
       scope.$watch('inputString', (inputString) ->
         scope.sentences = sentenceSplitter.analyze(inputString)
       , this)

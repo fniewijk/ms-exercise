@@ -1,8 +1,6 @@
 template = require './ProductList.html'
 require './ProductList.less'
 
-require '../sortdropdown/SortDropdown.coffee'
-
 module.exports = ->
   return {
     replace: true
