@@ -1,5 +1,3 @@
-ProductLoader = require './ProductLoader.coffee'
-
 describe 'ProductLoader', ->
 
   $httpBackend = productLoader = null

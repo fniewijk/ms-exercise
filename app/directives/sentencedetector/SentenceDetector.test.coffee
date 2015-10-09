@@ -1,7 +1,5 @@
 _ = require 'lodash'
 
-require './SentenceDetector.coffee'
-
 describe 'SentenceDetector', ->
   $rootScope = $compile = $sentenceSplitter = null
   defaultTemplate = '<sentence-detector></sentence-detector>'

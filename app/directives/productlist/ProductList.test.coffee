@@ -1,7 +1,5 @@
 _ = require 'lodash'
 
-require './ProductList.coffee'
-
 describe 'ProductList', ->
   $rootScope = $compile = null
   defaultTemplate = '<product-list data="data"></product-list>'

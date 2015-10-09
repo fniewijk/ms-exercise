@@ -1,5 +1,3 @@
-SentenceSplitter = require './SentenceSplitter.coffee'
-
 describe 'SentenceSplitter', ->
 
   sentenceSplitter = null
