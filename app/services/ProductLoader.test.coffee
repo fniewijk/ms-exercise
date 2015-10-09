@@ -1,3 +1,5 @@
+angular.module('productApp', []).factory('productLoader', require './ProductLoader.coffee')
+
 describe 'ProductLoader', ->
 
   $httpBackend = productLoader = null
@@ -18,7 +20,7 @@ describe 'ProductLoader', ->
   ]}
 
   beforeEach ->
-    angular.mock.module('app')
+    angular.mock.module('productApp')
 
     inject (_$httpBackend_, _productLoader_) ->
       $httpBackend = _$httpBackend_

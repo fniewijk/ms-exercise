@@ -1,6 +1,5 @@
+angular.module('sortDropdownApp', []).directive('sortDropdown', require './SortDropdown.coffee')
 _ = require 'lodash'
-
-require './SortDropdown.coffee'
 
 describe 'SortDropdown', ->
   $rootScope = $compile = null
@@ -12,7 +11,7 @@ describe 'SortDropdown', ->
     elem
 
   beforeEach ->
-    angular.mock.module('app')
+    angular.mock.module('sortDropdownApp')
 
     inject (_$rootScope_, _$compile_) ->
       $rootScope = _$rootScope_.$new()

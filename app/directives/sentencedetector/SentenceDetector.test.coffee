@@ -1,3 +1,4 @@
+angular.module('sentenceDetectorApp', []).directive('sentenceDetector', require './SentenceDetector.coffee')
 _ = require 'lodash'
 
 describe 'SentenceDetector', ->
@@ -6,7 +7,9 @@ describe 'SentenceDetector', ->
   defaultData = "I am not surprised. I am very surprised! Am I surprised? I am surprised, are you? I’m not surprised; that’s pretty cool though. On a scale of 1 – 10, how surprised are you? You don’t look surprised. Are you kidding me?! Of course I’m surprised, who wouldn’t be!? It’s amazing!"
   mockService = {
     analyze : (inputString) ->
-      return ["I am not surprised.", "I am very surprised!", "Am I surprised?", "I am surprised, are you?", "I’m not surprised; that’s pretty cool though.", "On a scale of 1 – 10, how surprised are you?", "You don’t look surprised.", "Are you kidding me?!", "Of course I’m surprised, who wouldn’t be!?", "It’s amazing!"]
+      if inputString
+        return ["I am not surprised.", "I am very surprised!", "Am I surprised?", "I am surprised, are you?", "I’m not surprised; that’s pretty cool though.", "On a scale of 1 – 10, how surprised are you?", "You don’t look surprised.", "Are you kidding me?!", "Of course I’m surprised, who wouldn’t be!?", "It’s amazing!"]
+      return []
   }
 
   createDirective = (data, template) ->
@@ -17,12 +20,16 @@ describe 'SentenceDetector', ->
     elem
 
   beforeEach ->
-    angular.mock.module('app')
+    angular.mock.module('sentenceDetectorApp', ($provide) ->
+      $provide.value('sentenceSplitter', mockService)
+      # https://gist.github.com/jbrowning/9527280
+      return null
+    )
 
     inject (_$rootScope_, _$compile_, _sentenceSplitter_) ->
       $rootScope = _$rootScope_.$new()
       $compile = _$compile_
-      $sentenceSplitter = mockService
+      $sentenceSplitter = _sentenceSplitter_
 
   it 'the directive should render three elements', ->
     $element = createDirective("")
@@ -33,7 +40,7 @@ describe 'SentenceDetector', ->
     expect($element.children()).to.have.length 3
 
   it 'should produce an empty list if no data provided', ->
-    $element = createDirective("").children()[2]
+    $element = createDirective().children()[2]
 
     element = $element
 

@@ -1,3 +1,4 @@
+angular.module('productListApp', []).directive('productList', require './ProductList.coffee')
 _ = require 'lodash'
 
 describe 'ProductList', ->
@@ -30,9 +31,8 @@ describe 'ProductList', ->
     $rootScope.$digest()
     elem
 
-
   beforeEach ->
-    angular.mock.module('app')
+    angular.mock.module('productListApp')
 
     inject (_$rootScope_, _$compile_) ->
       $rootScope = _$rootScope_.$new()

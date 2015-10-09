@@ -1,10 +1,12 @@
+angular.module('sentenceApp', []).factory('sentenceSplitter', require './SentenceSplitter.coffee')
+
 describe 'SentenceSplitter', ->
 
   sentenceSplitter = null
   defaultData = "I am not surprised. I am very surprised! Am I surprised? I am surprised, are you? I’m not surprised; that’s pretty cool though. On a scale of 1 – 10, how surprised are you? You don’t look surprised. Are you kidding me?! Of course I’m surprised, who wouldn’t be!? It’s amazing!"
 
   beforeEach ->
-    angular.mock.module('app')
+    angular.mock.module('sentenceApp')
 
     inject (_sentenceSplitter_) ->
       sentenceSplitter = _sentenceSplitter_
