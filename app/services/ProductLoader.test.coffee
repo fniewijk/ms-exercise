@@ -28,8 +28,10 @@ describe 'ProductLoader', ->
 
     $httpBackend.when('GET', 'data/data.json').respond(mockData)
 
-    returnObject = productLoader.get()
+    returnObject = productLoader.get().success( (result) ->
+      expect(result.data.length).to.equal (mockData.data.length)
+    )
 
     $httpBackend.flush()
 
-    expect(returnObject.$$state.value.data.data.length).to.equal mockData.data.length
+
